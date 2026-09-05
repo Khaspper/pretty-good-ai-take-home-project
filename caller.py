@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+from twilio.rest import Client
+from twilio.twiml.voice_response import VoiceResponse
+
+load_dotenv()
+
 PGA_LINE = "+18054398008"
 
 
@@ -11,3 +18,16 @@ def check_number_allowed(number: str) -> str:
             f"refusing to dial '{number}' - the only allowed number is {PGA_LINE}"
         )
     return number
+
+
+def call_number(number: str) -> None:
+    # Uncomment this later
+    # check_number_allowed(number)
+    client = Client()
+    twilioNumber = os.getenv("TWILIO_FROM_NUMBER")
+    call = client.calls.create(
+        url=f"{os.getenv("PUBLIC_URL")}/voice",
+        from_=twilioNumber,
+        to=number,
+    )
+    print(call.sid)
