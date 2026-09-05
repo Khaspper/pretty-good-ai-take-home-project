@@ -1,5 +1,12 @@
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse, Response
+
+load_dotenv()
+
+STREAM_URL = os.getenv("PUBLIC_URL", "").replace("https://", "wss://")
 
 app = FastAPI()
 
@@ -11,11 +18,11 @@ def ping() -> str:
 
 @app.post("/voice")
 def voice() -> Response:
-    response = """
+    response = f"""
     <Response>
-        <Say>Yurrrrrrr what you doin cuh</Say>
-        <Pause length="12"/>
-        <Say>Alright, hanging up.</Say>
+        <Connect>
+            <Stream url="{STREAM_URL}/listen" />
+        </Connect>
     </Response>
     """
     return Response(content=response, media_type="application/xml")
