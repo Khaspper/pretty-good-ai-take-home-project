@@ -665,6 +665,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "twilio" },
     { name = "uvicorn", extra = ["standard"] },
     { name = "websockets" },
@@ -674,6 +675,7 @@ dependencies = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115" },
     { name = "python-dotenv", specifier = ">=1.0" },
+    { name = "requests", specifier = ">=2.32" },
     { name = "twilio", specifier = ">=9.3" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.32" },
     { name = "websockets", specifier = ">=13.0" },

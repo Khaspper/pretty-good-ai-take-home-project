@@ -13,7 +13,9 @@ def ping() -> str:
 def voice() -> Response:
     response = """
     <Response>
-        <Say>Yurrrrrrr this a test cuh!</Say>
+        <Say>Yurrrrrrr what you doin cuh</Say>
+        <Pause length="12"/>
+        <Say>Alright, hanging up.</Say>
     </Response>
     """
     return Response(content=response, media_type="application/xml")

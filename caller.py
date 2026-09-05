@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-from twilio.twiml.voice_response import VoiceResponse
 
 load_dotenv()
 
@@ -20,7 +19,7 @@ def check_number_allowed(number: str) -> str:
     return number
 
 
-def call_number(number: str) -> None:
+def call_number(number: str) -> str:
     # Uncomment this later
     # check_number_allowed(number)
     client = Client()
@@ -29,5 +28,7 @@ def call_number(number: str) -> None:
         url=f"{os.getenv("PUBLIC_URL")}/voice",
         from_=twilioNumber,
         to=number,
+        record=True,
+        recording_channels="dual",
     )
-    print(call.sid)
+    return call.sid
