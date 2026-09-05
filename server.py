@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.responses import PlainTextResponse, Response
 
 load_dotenv()
@@ -26,3 +26,18 @@ def voice() -> Response:
     </Response>
     """
     return Response(content=response, media_type="application/xml")
+
+
+# https://fastapi.tiangolo.com/advanced/websockets/#create-a-websocket
+# I've actually never really touched websockets with python
+@app.websocket("/listen")
+async def listen_to_call(websocket: WebSocket):
+    await websocket.accept()
+    print("line opened")
+
+    slices = 0
+    while True:
+        data = await websocket.receive_text()
+        slices += 1
+        print(slices)
+        print(f"data: {data}")
