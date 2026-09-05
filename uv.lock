@@ -659,7 +659,7 @@ wheels = [
 ]
 
 [[package]]
-name = "outbound-ai-caller"
+name = "pretty-good-ai"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
