@@ -21,7 +21,7 @@ def check_number_allowed(number: str) -> str:
 
 def call_number(number: str) -> str:
     # Uncomment this later
-    # check_number_allowed(number)
+    check_number_allowed(number)
     client = Client()
     twilioNumber = os.getenv("TWILIO_FROM_NUMBER")
     call = client.calls.create(

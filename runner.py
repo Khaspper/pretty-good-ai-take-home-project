@@ -32,7 +32,8 @@ def wait_for_end(call_sid: str, timeout: int = 300) -> str:
 
 def main() -> None:
     # Temporary: this becomes PGA_LINE once the refuse-to-dial guard goes back on.
-    number = os.getenv("MY_PHONE_NUMBER")
+    # number = os.getenv("TWILIO_FROM_NUMBER")
+    number = "+18054398008"
     call_sid = call_number(number)
     print(f"placed {call_sid}")
 
