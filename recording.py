@@ -16,7 +16,7 @@ class RecordingNeverArrived(Exception):
     """Raised when Twilio never finished a recording for a call"""
 
 
-def wait_for_recording(call_sid: str, timeout: int = 90) -> RecordingInstance:
+def wait_for_recording(call_sid: str, timeout: int = 180) -> RecordingInstance:
     # We have to wait for twilio to finish creating the record
     client = Client()
     deadline = time.time() + timeout
@@ -28,7 +28,7 @@ def wait_for_recording(call_sid: str, timeout: int = 90) -> RecordingInstance:
         # If nothing found we wait for 3 seconds
         time.sleep(3)
 
-    # Throw if 90 seconds have passed
+    # Throw if 180 seconds have passed
     raise RecordingNeverArrived(
         f"no finished recording for {call_sid} after {timeout}s"
     )
